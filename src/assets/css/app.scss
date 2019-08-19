@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/**
+ * 全局样式
+ */
+
+// 基础
+@import './ui-base/variable';
+@import './ui-base/normalize';
+@import './ui-base/reset';
+
+// 组件样式
+@import './ui-base/marginPadding.scss';
+
+// transition过渡动画
+.page-fade-enter-active {
+  animation-name: fadeInUp;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

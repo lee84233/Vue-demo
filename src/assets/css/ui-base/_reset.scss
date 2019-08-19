@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+@import './_variable';
+
+/**
+ * reset base style
+ * 
+ * @Author:Bruce.Lee
+ * @Date:2017-02-28
+ */
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td,
+form,
+pre {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-size: $fontDefaultSize;
+  color: $fontDefaultColor;
+  font-family: $fontDefaultFamily;
+}
+
+a {
+  color: $link-default-color;
+  text-decoration: none;
+  @include transFunc(0.2s);
+  &:hover {
+    color: darken($link-default-color, 10%);
+  }
+}
+
+input,
+textarea,
+img,
+button,
+select,
+optgroup,
+option,
+a,
+a:active,
+a:hover {
+  outline: 0;
+}
+
+img {
+  display: inline-block;
+  border: none;
+  vertical-align: middle;
+}
+
+li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+/**
+ * 滚动条
+ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+// 滚动条 轨道 两端按钮
+::-webkit-scrollbar-button:vertical {
+  display: none;
+}
+
+// 滚动条 轨道
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background-color: $scrollbar-corner-bgColor;
+}
+
+// 滚动条 小方块
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: $scrollbar-thumb-color;
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: $scrollbar-thumb-color-hover;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background-color: $scrollbar-thumb-color-active;
+}

@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+/*主色调*/
+$mainColor: #2255a4;
+$mainColorHover: lighten($mainColor, 10%);
+$mainColorAcitve: darken($mainColor, 20%);
+
+$mainColor2: #00a0e9;
+$mainColor2Hover: lighten($mainColor2, 10%);
+$mainColor2Acitve: darken($mainColor2, 20%);
+
+/*背景颜色*/
+$bodyBg: #f8f8f8;
+
+/*默认字体*/
+$fontDefaultColor: #4d5557;
+$fontDefaultSize: 14px;
+$fontDefaultFamily: Helvetica, PingFang SC, \5fae\8f6f\96c5\9ed1, Tahoma, Arial,
+  sans-serif, 'Microsoft YaHei';
+
+// 主体栏宽度
+$main-width: 1200px;
+
+/*字体颜色*/
+$link-default-color: #606ddd;
+$fontgrey1: #b3c0c6;
+
+/*常用颜色*/
+$info: #28a3ef;
+$infoHover: lighten($info, 10%);
+$infoActive: darken($info, 20%);
+
+$success: #5eb95e;
+$successHover: lighten($success, 10%);
+$successActive: darken($success, 20%);
+
+$danger: #ff4a5d;
+$dangerHover: lighten($danger, 10%);
+$dangerActive: darken($danger, 20%);
+
+$warning: #faac30;
+$warningHover: lighten($warning, 10%);
+$warningActive: darken($warning, 20%);
+
+/*边框颜色*/
+$borderColor: #d3d3d3;
+
+/**
+ * 按钮
+ * button.scss
+ */
+
+// padding 上下间距
+$btn-padding-vertical: 8px;
+// padding 左右间距
+$btn-padding-horizontal: 16px;
+// 默认圆角大小
+$btn-radius: 2px;
+
+$btn-default-color: #454a4d;
+$btn-default-bgColor: #e5ebeb;
+$btn-default-hover-bgColor: darken($btn-default-bgColor, 10%);
+$btn-default-active-bgColor: darken($btn-default-bgColor, 20%);
+
+/**
+ * 表格
+ * table.scss
+ */
+$table-border-color: #ddd;
+$table-bg-hover-color: #e9e9e9;
+
+$table-padding: 12px 10px;
+$table-radius: 8px;
+
+/**
+ * 间距
+ * marginPadding.scss
+ */
+$distance-xs: 5px;
+$distance-sm: 10px;
+$distance-lg: 15px;
+$distance-default: 20px;
+$distance-xl: 30px;
+
+/**
+ * 滚动条
+ * reset.scss
+ */
+
+// 轨道 背景色
+$scrollbar-corner-bgColor: #e2e2e2;
+
+// 滑块
+$scrollbar-thumb-color: rgba(0, 0, 0, 0.3);
+$scrollbar-thumb-color-hover: rgba(0, 0, 0, 0.35);
+$scrollbar-thumb-color-active: rgba(0, 0, 0, 0.38);
+
+/*设置行高和行间距*/
+@mixin height_line($h) {
+  height: $h;
+  line-height: $h;
+}
+
+/*过渡效果*/
+@mixin transFunc($s: 0.4s) {
+  -moz-transition: all $s;
+  -ms-transition: all $s;
+  -o-transition: all $s;
+  -webkit-transition: all $s;
+  transition: all $s;
+}
+
+// Clearfix
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: ' '; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
