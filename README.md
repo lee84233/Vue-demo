@@ -56,6 +56,7 @@ npm run test
 1. 封装`axios`实例，用于发起`Restful`请求。路径：`/src/assets/js/axios-interface.js`
 2. ~~封装`Apollo`实例，用于发起`GraphQL`请求。路径：`/src/assets/js/apollo-client.js`~~
 
+
 ### 3.1 发起请求
 ```javascript
 /**
@@ -91,7 +92,7 @@ login({
 });
 ```
 
-### 3.2 执行多个并发
+### 3.2 执行多个并发（同时发起多个请求）
 ```javascript
 /**
  * 文件：service/user.js
@@ -135,6 +136,17 @@ getAll({}, {}).then(
 ```
 
 ## 4. 使用代理，解决开发跨域问题
+
+```
+      https://example.com:80/interface/menu/getMentList
+      \____________________/\________/\_______________/
+                |               |             |     
+              proxy          context         path
+
+proxy：代理域名，在`proxy`中配置
+context：上下文，在`axois实例`和`proxy`属性中，分别配置。(上下文可以是自定义)
+path：路径，在定义接口时配置
+```
 
 ```javascript
 // vue.config.js
