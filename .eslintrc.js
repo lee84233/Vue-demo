@@ -7,17 +7,17 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // ½ûÖ¹ĞŞ¸ÄconstÉùÃ÷µÄ±äÁ¿
+    // ç¦æ­¢ä¿®æ”¹constå£°æ˜çš„å˜é‡
     'no-const-assign': 2,
-    // ÔÚ´´½¨¶ÔÏó×ÖÃæÁ¿Ê±²»ÔÊĞí¼üÖØ¸´ {a:1,a:1}
+    // åœ¨åˆ›å»ºå¯¹è±¡å­—é¢é‡æ—¶ä¸å…è®¸é”®é‡å¤ {a:1,a:1}
     'no-dupe-keys': 2,
-    // º¯Êı²ÎÊı²»ÄÜÖØ¸´
+    // å‡½æ•°å‚æ•°ä¸èƒ½é‡å¤
     'no-dupe-args': 2,
-    // Óï¾äÇ¿ÖÆ·ÖºÅ½áÎ²
+    // è¯­å¥å¼ºåˆ¶åˆ†å·ç»“å°¾
     semi: ['error', 'always'],
-    // ½ûÖ¹Ê¹ÓÃconsole
+    // ç¦æ­¢ä½¿ç”¨console
     'no-console': 1,
-    // ÔÚº¯Êı¶¨ÒåÖĞ£¬À¨ºÅÖ®Ç°£¬ÒªÖ´ĞĞÒ»ÖÂµÄ¼ä¾à
+    // åœ¨å‡½æ•°å®šä¹‰ä¸­ï¼Œæ‹¬å·ä¹‹å‰ï¼Œè¦æ‰§è¡Œä¸€è‡´çš„é—´è·
     // 'space-before-function-parentheses': ['error', 'never'],
     'space-before-function-paren': [
       'error',
@@ -27,7 +27,7 @@ module.exports = {
         asyncArrow: 'never'
       }
     ],
-    // ´óÀ¨ºÅ{}¼ä¿Õ¸ñ
+    // å¤§æ‹¬å·{}é—´ç©ºæ ¼
     'object-curly-spacing': ['error', 'never']
   },
   parserOptions: {
