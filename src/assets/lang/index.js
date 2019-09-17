@@ -14,7 +14,8 @@ import zh from './zh'; // 中文
 import en from './en'; // 英文
 
 Vue.use(VueI18n);
-export default new VueI18n({
+
+const I18N = new VueI18n({
   locale: store.state.lang, // 语言，在页面中切换locale的值实现语言切换：this.$i18n.localse = 'en'
   fallbackLocale: 'zh', // 预设语言
   messages: {
@@ -22,3 +23,5 @@ export default new VueI18n({
     en
   }
 });
+
+export default I18N;
