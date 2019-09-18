@@ -1,5 +1,8 @@
 /*
  * axios 实例封装
+ * 通常一个实例对应一个代理
+ * 如果有多个代理，可Copy该文件，修改 OPTION 对象，来对应多个代理
+ * 
  * @Author: Bruce.Lee
  * @Date: 2018-03-03 11:25:19
  * @Last Modified by: Bruce.Lee
@@ -30,6 +33,7 @@ const AXIOS_BASE = axios.create(OPTION);
 AXIOS_BASE.interceptors.request.use(
   (config) => {
     // 在发送请求之前处理
+    // headers添加token
     if (app.$store.state.token) {
       config.headers.Authorization = app.$store.state.token;
     }
@@ -93,7 +97,7 @@ AXIOS_BASE.interceptors.response.use(
       }
       /* eslint-enable */
     }
-    console.error('错误信息：', error.message); // eslint-disable-line
+    console.error(`错误信息：${error.message}`); // eslint-disable-line
     return Promise.reject(error);
   }
 );
@@ -155,9 +159,18 @@ export default async function({
   loading = false
 }) {
   loading === true && app.$Progress.start();
-
   method = method.toLowerCase(); // 请求方法
   let params = {}; // 与请求一起发送的 URL 参数
+
+  // Content-Type
+  let contentType = headers['Content-Type'] || headers['Content-type'] || headers['content-Type'] || headers['content-type'] || '';
+  if (contentType && typeof contentType === 'string') {
+    if (contentType.includes('application/x-www-form-urlencoded')) {
+      dataType = 'form';
+    } else if (contentType.includes('application/json')) {
+      dataType = 'json';
+    }
+  }
 
   // 设置请求头的编码类型
   if (dataType === 'form') {
@@ -172,6 +185,8 @@ export default async function({
     data = {};
   } else if (['post', 'put', 'patch'].includes(method)) {
     data = formatParams(data, dataType);
+  } else {
+    console.error(`${url}接口请求方法错误：${method}`); // eslint-disable-line
   }
 
   return new Promise((resolve, reject) => {

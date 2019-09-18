@@ -7,13 +7,3 @@
     </transition>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.tabs {
-  display: inline-block;
-  margin: 0 20px;
-  padding: 20px 30px;
-  text-decoration: underline;
-  font-size: 16px;
-}
-</style>

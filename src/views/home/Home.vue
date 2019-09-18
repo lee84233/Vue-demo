@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <button @click="switchLanguage">发起一个HTTP请求</button>
+    <el-button
+      type="primary"
+      @click="switchLanguage"
+    >发起一个HTTP请求</el-button>
     <br />
-    <button @click="getAll">发起多个HTTP请求（并发请求）</button>
+    <button @click="getAll" id="sendHttps">发起多个HTTP请求（并发请求）</button>
   </div>
 </template>
 
@@ -13,6 +16,12 @@ import {switchLanguage, getAll} from '@/service/user';
 export default {
   name: 'home',
   components: {},
+  mounted() {
+    $('#sendHttps').css({
+      padding: '10px 20px',
+      border: '1px solid #096'
+    });
+  },
   methods: {
     switchLanguage() {
       switchLanguage({a: 1, b: 2}).then((res) => {

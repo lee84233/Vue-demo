@@ -29,25 +29,28 @@ npm run test
 ├── dist/                          // 默认的 build 输出目录
 ├── public/                        // 静态资源
     ├── index.html                 // index.html
-    └── manifest.json              // PWA应用manifest.json文件（PWA应用需要此文件）
+    └── favicon.ico                // favicon图标
+    └── manifest.json              // *PWA应用manifest.json文件（PWA应用需要此文件）
     └── ...                        // 其他不需要webpack处理的资源（如第三方插件），你需要通过绝对路径来引用它们
-└── src/                           // 源码目录，可选
-    ├── assets/                    // 静态资源目录
-        ├── images                 // 图片资源目录
-        ├── css                    // css资源目录
-        ├── js                     // js资源目录
+└── src/                           // 源代码
+    ├── assets/                    // 静态资源
+        ├── images                 // 图片
+        ├── css                    // 样式
+        ├── js                     // 公用方法
+        ├── plugins                // 插件
         └── lang                   // 国际化资源目录
-    ├── store/                     // Vuex状态管理目录
-    ├── router/                    // Vue Router路由目录
-    ├── service/                   // 接口文档
-    ├── components/                // 组件目录
+    ├── store/                     // Vuex状态管理
+    ├── router/                    // 路由
+    ├── service/                   // api接口目录
+    ├── components/                // 组件
     ├── views/                     // 页面目录
         ├── layout                 // Layout布局文件
         └── ...                    // 其他vue文件
     ├── App.vue                    // 根组件
     └── main.js                    // 入口js
-├── vue.config.js                  // 配置文件
-├── .env.development               // 开发环境文件
+├── vue.config.js                  // vue-cli 配置
+├── .env.xxx                       // 环境变量配置
+├── .eslintrc.js                   // Eslint配置
 ├── .env.production                // 生产环境文件
 └── package.json                   // npm包配置文件，定义项目的npm脚本，依赖包等信息
 ```
@@ -161,4 +164,31 @@ module.exports = {
     }
   }
 };
+```
+
+## 4. 使用Webpack全局引入插件
+
+### 4.1 示例：全局引入 `jquery`
+
+```
+// 安装依赖
+npm install --save jquery
+npm install --save-dev webpack
+
+// vue.config.js文件
+const webpack = require('webpack');
+module.exports = {
+  // 配置 webpack，会合并到最终的配置中
+  configureWebpack: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        ...
+      })
+    ]
+  }
+};
+
 ```

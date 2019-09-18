@@ -5,7 +5,6 @@
  * @Last Modified by: Bruce.Lee
  * @Last Modified time: 2019-07-03 15:00:24
  */
-
 module.exports = {
   // 部署应用包时的基本 URL
   publicPath: '/',
@@ -13,6 +12,12 @@ module.exports = {
   assetsDir: 'assets',
   // 生产环境的 source map
   productionSourceMap: false,
+  // 配置 webpack，会合并到最终的配置中
+  // configureWebpack: {
+  //   plugins: [
+  //     new webpack.ProvidePlugin({})
+  //   ]
+  // },
   devServer: {
     host: '0.0.0.0',
     port: 8080,

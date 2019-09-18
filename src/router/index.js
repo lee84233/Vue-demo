@@ -13,7 +13,7 @@ let ROUTER = new Router({
   mode: 'history',
   routes: [
     ...Home, // home
-    ...error // 404,500 错误页面
+    ...error // 404,500等错误页面，放在最后
   ],
   // 滚动行为
   // 只在支持 history.pushState 的浏览器中可用
@@ -32,7 +32,8 @@ ROUTER.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   } else {
-    document.title = 'Vue demo';
+    // 默认项目名称
+    document.title = process.env.VUE_APP_NAME;
   }
   // 设置页面权限
   if (to.meta.requiresAuth === true) {
