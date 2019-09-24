@@ -2,7 +2,7 @@
  * axios 实例封装
  * 通常一个实例对应一个代理
  * 如果有多个代理，可Copy该文件，修改 OPTION 对象，来对应多个代理
- * 
+ *
  * @Author: Bruce.Lee
  * @Date: 2018-03-03 11:25:19
  * @Last Modified by: Bruce.Lee
@@ -17,8 +17,11 @@ import app from '@/main';
  * 基本参数
  */
 const OPTION = {
-  baseURL: '/interface', // 接口路径和配置代理的路径
-  timeout: 15000, // 超时时间
+  // 接口基础路径和配置代理的路径
+  // url = base url + request url
+  baseURL: process.env.VUE_APP_BASE_URL,
+  // 超时时间
+  timeout: 30000,
   // 请求头
   headers: {
     // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' // form data格式

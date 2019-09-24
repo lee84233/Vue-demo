@@ -33,15 +33,15 @@ npm run test
     └── manifest.json              // *PWA应用manifest.json文件（PWA应用需要此文件）
     └── ...                        // 其他不需要webpack处理的资源（如第三方插件），你需要通过绝对路径来引用它们
 └── src/                           // 源代码
-    ├── assets/                    // 静态资源
-        ├── images                 // 图片
+    ├── assets/                    // 样式、图片、公用方法和插件等静态资源
         ├── css                    // 样式
-        ├── js                     // 公用方法
+        ├── images                 // 图片
+        ├── utils                  // 公用方法
         ├── plugins                // 插件
-        └── lang                   // 国际化资源目录
+        └── lang                   // 国际化
     ├── store/                     // Vuex状态管理
     ├── router/                    // 路由
-    ├── service/                   // api接口目录
+    ├── service/                   // 所有接口请求
     ├── components/                // 组件
     ├── views/                     // 页面目录
         ├── layout                 // Layout布局文件
@@ -56,7 +56,7 @@ npm run test
 ```
 
 ## 3. HTTP请求
-1. 封装`axios`实例，用于发起`Restful`请求。路径：`/src/assets/js/axios-interface.js`
+1. 封装`axios`实例，用于发起`Restful`请求。路径：`/src/assets/utils/request-base.js`
 2. ~~封装`Apollo`实例，用于发起`GraphQL`请求。路径：`/src/assets/js/apollo-client.js`~~
 
 
@@ -66,7 +66,7 @@ npm run test
  * 文件：service/user.js
  */
 // 引入axios实例
-import SendHttp from '@/assets/js/axios-interface';
+import SendHttp from '@/assets/utils/request-base';
 // 定义接口：登录
 export function login(data) {
   return SendHttp({
@@ -102,7 +102,7 @@ login({
  */
 // 引入axios、axios实例
 import axios from 'axios';
-import SendHttp from '@/assets/js/axios-interface';
+import SendHttp from '@/assets/utils/request-base';
 // 定义接口：测试接口2
 function api2(data) {
   return SendHttp({
@@ -171,9 +171,11 @@ module.exports = {
 ### 5.1 示例：全局引入 `jquery`
 
 ```
+// 需要安装webpack，项目已安装则忽略
+npm install --save-dev webpack
+
 // 安装依赖
 npm install --save jquery
-npm install --save-dev webpack
 
 // vue.config.js文件
 const webpack = require('webpack');

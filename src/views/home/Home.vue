@@ -16,12 +16,7 @@ import {switchLanguage, getAll} from '@/service/user';
 export default {
   name: 'home',
   components: {},
-  mounted() {
-    $('#sendHttps').css({
-      padding: '10px 20px',
-      border: '1px solid #096'
-    });
-  },
+  mounted() {},
   methods: {
     switchLanguage() {
       switchLanguage({a: 1, b: 2}).then((res) => {

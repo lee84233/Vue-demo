@@ -5,6 +5,7 @@
  * @Last Modified by: Bruce.Lee
  * @Last Modified time: 2019-07-03 15:00:24
  */
+
 module.exports = {
   // 部署应用包时的基本 URL
   publicPath: '/',
@@ -24,11 +25,11 @@ module.exports = {
     open: true,
     https: false,
     proxy: {
-      '/interface': {
+      [process.env.VUE_APP_BASE_URL]: {
         target: 'http://localhost:81',
         changeOrigin: true,
         pathRewrite: {
-          // '^/interface': '/interface'
+          // [process.env.VUE_APP_BASE_URL]: '/interface'
         }
       }
     }

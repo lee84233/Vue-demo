@@ -1,5 +1,5 @@
 import axios from 'axios';
-import SendHttp from '@/assets/js/axios-interface';
+import SendHttp from '@/assets/utils/request-base';
 
 // 接口1
 export function switchLanguage(data) {
