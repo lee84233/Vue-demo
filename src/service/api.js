@@ -1,5 +1,5 @@
 /**
- * api示例
+ * 定义示例功能接口
  */
 import request from '@/assets/utils/request-base';
 
