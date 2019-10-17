@@ -7,3 +7,10 @@
     </transition>
   </div>
 </template>
+
+<style lang="scss">
+.tabs {
+  display: inline-block;
+  margin: 20px 50px;
+}
+</style>

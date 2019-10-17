@@ -66,10 +66,10 @@ npm run test
  * 文件：service/user.js
  */
 // 引入axios实例
-import SendHttp from '@/assets/utils/request-base';
+import request from '@/assets/utils/request-base';
 // 定义接口：登录
 export function login(data) {
-  return SendHttp({
+  return request({
     url: 'login.php', // 必填，接口相对地址
     method: 'post', // 选填，请求方式，默认值：get，可选值：get | post | put | delete
     data, // 选填，请求参数，默认：{}
@@ -102,17 +102,17 @@ login({
  */
 // 引入axios、axios实例
 import axios from 'axios';
-import SendHttp from '@/assets/utils/request-base';
+import request from '@/assets/utils/request-base';
 // 定义接口：测试接口2
 function api2(data) {
-  return SendHttp({
+  return request({
     url: 'test2.php', // 接口相对地址，必填
     data
   });
 }
 // 定义接口：测试接口3
 function api3(data) {
-  return SendHttp({
+  return request({
     url: 'test3.php', // 接口相对地址，必填
     data
   });
@@ -194,3 +194,9 @@ module.exports = {
 };
 
 ```
+
+# 6. 安装 `Element UI` 框架
+
+1. 安装Vue CLI，`npm install -g @vue/cli`。（如已安装，可忽略本步骤）
+2. 添加依赖 `vue add element`。
+3. main.js文件添加全局依赖 `import '@/assets/plugins/element';`。
