@@ -15,15 +15,6 @@ export default [
           requiresAuth: false
         },
         component: () => import('@/views/home/Home')
-      },
-      {
-        path: 'about',
-        name: 'about',
-        meta: {
-          title: '首页',
-          requiresAuth: false
-        },
-        component: () => import('@/views/home/About')
       }
     ]
   }
