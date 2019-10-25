@@ -1,8 +1,8 @@
 /*
  * editor prettier（编辑器自动格式化）
- * @Author: Bruce.Lee
+ * @Author: Lee
  * @Date: 2018-03-03 10:47:24
- * @Last Modified by: Bruce.Lee
+ * @Last Modified by: Lee
  * @Last Modified time: 2019-07-03 13:46:58
  */
 

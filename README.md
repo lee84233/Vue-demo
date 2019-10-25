@@ -1,6 +1,7 @@
 # 开箱即用 - Vue前端框架
 
-* 基于Vue Cli 3创建的Vue前端框架，适用于中小型应用、微服务应用。
+* 基于 `Vue 2.x`、`Vue Cli 4.x` 完善的Vue前端框架
+* 适用于中小型应用、微服务应用
 
 ----
 
@@ -37,11 +38,10 @@ npm run test
         ├── css                    // 样式
         ├── images                 // 图片
         ├── utils                  // 公用方法
-        ├── plugins                // 插件
-        └── lang                   // 国际化
+        └── plugins                // 插件
     ├── store/                     // Vuex状态管理
     ├── router/                    // 路由
-    ├── service/                   // 所有接口请求
+    ├── api/                       // 所有接口请求
     ├── components/                // 组件
     ├── views/                     // 页面目录
         ├── layout                 // Layout布局文件
@@ -56,11 +56,21 @@ npm run test
 ```
 
 ## 3. HTTP请求
+
 1. 封装`axios`实例，用于发起`Restful`请求。路径：`/src/assets/utils/request-base.js`
 2. ~~封装`Apollo`实例，用于发起`GraphQL`请求。路径：`/src/assets/js/apollo-client.js`~~
 
+## 3.1 参数说明
 
-### 3.1 发起请求
+1. `url`：**唯一的必填属性**，接口相对地址
+2. `baseURL`：基础URL，默认值：实例的配置，选填，通常在实例中配置即可
+3. `method`：请求方式，可选值：get | post | put | delete，默认值：get，选填
+4. `data`：请求参数，默认值：{}，选填
+5. `dataType`：请求的编码类型，可选值：json | form，默认值：实例的配置，选填，通常在实例中配置即可
+6. `headers`：请求头，默认值：{}，选填
+7. `loading`：顶部Loading动画，可选值：true | false，默认值：false，选填
+
+### 3.2 发起请求
 ```javascript
 /**
  * 文件：service/user.js
@@ -70,12 +80,11 @@ import request from '@/assets/utils/request-base';
 // 定义接口：登录
 export function login(data) {
   return request({
-    url: 'login.php', // 必填，接口相对地址
-    method: 'post', // 选填，请求方式，默认值：get，可选值：get | post | put | delete
-    data, // 选填，请求参数，默认：{}
-    dataType: 'json', // 选填，请求数据的编码类型，默认值是axios实例的配置，可选值：form | json
-    headers: {}, // 选填，自定义请求头
-    loading: true // 选填，发起请求时loading动画，默认：false，可选值：true | false
+    url: 'login.php',
+    method: 'post',
+    data,
+    dataType: 'json',
+    loading: true
   });
 }
 
@@ -95,7 +104,7 @@ login({
 });
 ```
 
-### 3.2 执行多个并发（同时发起多个请求）
+### 3.3 执行多个并发（同时发起多个请求）
 ```javascript
 /**
  * 文件：service/user.js
@@ -129,7 +138,7 @@ export function getAll(data1, data2) {
 import axios from 'axios';
 import {getAll} from '@/service/user'; // 1. 引入需要使用的方法
 // 2. 使用
-getAll({}, {}).then(
+getAll({param: 'a'}, {param: 'b'}).then(
   axios.spread((response1, response2) => {
     // 两个请求现在都执行完成
     console.log(response1);
@@ -138,8 +147,9 @@ getAll({}, {}).then(
 );
 ```
 
-## 4. 使用代理，解决开发跨域问题
+## 4. 跨域
 
+### 4.1 开发环境，使用webpack的 `proxy` 解决跨域
 ```
       https://example.com:80/interface/menu/getMentList
       \____________________/\________/\_______________/
@@ -165,6 +175,13 @@ module.exports = {
   }
 };
 ```
+
+### 4.2 生产环境解决跨域
+
+1. `CORS`：一劳永逸的解决跨域问题，而且不管是开发环境还是正式环境都能方便的使用。详细[MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+2. 服务器（如：`nginx`、`node`等）配置反向代理。
+3. 前端打包后复制到后台 `webapp` 中，和后台同源部署，避免跨域。
+
 
 ## 5. 使用Webpack全局引入插件
 
@@ -195,7 +212,26 @@ module.exports = {
 
 ```
 
-# 6. 安装 `Element UI` 框架
+## 6. 国际化
+
+> 插件文档：https://kazupon.github.io/vue-i18n/
+
+1. 安装依赖 `npm install --save vue-i18n`
+2. `main.js` 引入i18n插件
+3. 插件使用见 `/src/assets/plugins/lang/index.js`
+
+```javascript
+// main.js
+// 国际化
+import i18n from '@/assets/plugins/lang/index';
+
+export default new Vue({
+  i18n,
+  render: (h) => h(App)
+}).$mount('#app');
+```
+
+## 7. 安装 `Element UI` 框架
 
 1. 安装Vue CLI，`npm install -g @vue/cli`。（如已安装，可忽略本步骤）
 2. 添加依赖 `vue add element`。

@@ -1,11 +1,11 @@
 /*
  * axios 实例封装
  * 通常一个实例对应一个代理
- * 如果有多个代理，可Copy该文件，修改 OPTION 对象，来对应多个代理
+ * 如果有多个代理，可Copy该文件，修改 OPTION 对象，来对应多个Proxy代理
  *
- * @Author: Bruce.Lee
+ * @Author: Lee
  * @Date: 2018-03-03 11:25:19
- * @Last Modified by: Bruce.Lee
+ * @Last Modified by: Lee
  * @Last Modified time: 2019-08-13 16:20:48
  */
 
@@ -14,7 +14,7 @@ import qs from 'qs';
 import app from '@/main';
 
 /**
- * 基本参数
+ * Request基本参数
  */
 const OPTION = {
   // 接口基础路径和配置代理的路径
@@ -111,6 +111,12 @@ AXIOS_BASE.interceptors.response.use(
  * @param {Object} data：参数
  * @returns {Object} 格式化后的参数类型
  */
+/**
+ * 对POST、PUT请求，参数格式化
+ * @param {Object} data：需要格式化的对象
+ * @param {*} dataType：form | json
+ * @returns 
+ */
 function formatParams(data, dataType) {
   // dataType 优先级最高
   if (dataType === 'form') {
@@ -154,6 +160,7 @@ function qsStringify(data) {
  * @returns {Promise} Promise
  */
 export default async function({
+  baseURL = null,
   url,
   method = 'get',
   data = {},
@@ -190,16 +197,25 @@ export default async function({
     data = formatParams(data, dataType);
   } else {
     console.error(`${url}接口请求方法错误：${method}`); // eslint-disable-line
+    return;
+  }
+
+  // request 参数
+  let option = {
+    url,
+    method,
+    params,
+    data,
+    headers
+  };
+
+  // baseURL
+  if (baseURL) {
+    option.baseURL = baseURL;
   }
 
   return new Promise((resolve, reject) => {
-    AXIOS_BASE.request({
-      url,
-      method,
-      params,
-      data,
-      headers
-    })
+    AXIOS_BASE.request(option)
       .then(
         (response) => {
           loading === true && app.$Progress.finish();

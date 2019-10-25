@@ -46,9 +46,7 @@ const orderFoodVuex = createPersistedState({
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
-    token: '',
-    // 语言
-    lang: 'zh'
+    token: ''
   },
   getters: {
   },
