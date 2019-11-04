@@ -1,20 +1,20 @@
 export default [
   {
-    path: '/',
+    path: '/home',
     component: () => import('@/views/layout/Layout-index'),
     children: [
       {
         path: '/',
-        redirect: 'home'
+        redirect: 'index'
       },
       {
-        path: 'home',
+        path: 'index',
         name: 'home',
         meta: {
           title: '首页',
           requiresAuth: false
         },
-        component: () => import('@/views/home/Home')
+        component: () => import('@/views/home/index')
       }
     ]
   }

@@ -49,7 +49,13 @@ AXIOS_BASE.interceptors.request.use(
 // 响应拦截器
 AXIOS_BASE.interceptors.response.use(
   // 对响应数据处理
-  (response) => response,
+  (response) => {
+    /*
+     * 此处还可以进行拦截
+     * 例如：判断接口是否success，response.data.code === 200
+     */
+    return response;
+  },
   (error) => {
     // 对响应错误处理
     if (error.message.includes('timeout')) {
@@ -114,8 +120,8 @@ AXIOS_BASE.interceptors.response.use(
 /**
  * 对POST、PUT请求，参数格式化
  * @param {Object} data：需要格式化的对象
- * @param {*} dataType：form | json
- * @returns 
+ * @param {String} dataType：form | json
+ * @returns {Object} 格式化的data
  */
 function formatParams(data, dataType) {
   // dataType 优先级最高
@@ -127,14 +133,7 @@ function formatParams(data, dataType) {
   }
 
   // axios全局配置 优先级次之
-  if (
-    OPTION &&
-    OPTION['headers'] &&
-    OPTION['headers']['Content-Type'] &&
-    OPTION['headers']['Content-Type'].includes(
-      'application/x-www-form-urlencoded'
-    )
-  ) {
+  if (OPTION['headers']['Content-Type'].includes('application/x-www-form-urlencoded')) {
     data = qsStringify(data);
   }
   return data;
@@ -172,16 +171,6 @@ export default async function({
   method = method.toLowerCase(); // 请求方法
   let params = {}; // 与请求一起发送的 URL 参数
 
-  // Content-Type
-  let contentType = headers['Content-Type'] || headers['Content-type'] || headers['content-Type'] || headers['content-type'] || '';
-  if (contentType && typeof contentType === 'string') {
-    if (contentType.includes('application/x-www-form-urlencoded')) {
-      dataType = 'form';
-    } else if (contentType.includes('application/json')) {
-      dataType = 'json';
-    }
-  }
-
   // 设置请求头的编码类型
   if (dataType === 'form') {
     headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
@@ -210,9 +199,7 @@ export default async function({
   };
 
   // baseURL
-  if (baseURL) {
-    option.baseURL = baseURL;
-  }
+  baseURL && (option.baseURL = baseURL);
 
   return new Promise((resolve, reject) => {
     AXIOS_BASE.request(option)

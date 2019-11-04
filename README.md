@@ -1,23 +1,28 @@
 # 开箱即用 - Vue前端框架
 
-* 基于 `Vue 2.x`、`Vue Cli 4.x` 完善的Vue前端框架
-* 适用于中小型应用、微服务应用
-
-----
-
-1. 需要具有Vue，Vue Router，Vuex等基础。
-2. 本项目技术栈相关文档：[Vue官网](https://cn.vuejs.org/)、[Vue Router](https://router.vuejs.org/zh/)、[Vuex](https://vuex.vuejs.org/zh/)。
-3. 指南和配置文档：[Vue Cli](https://cli.vuejs.org/zh/)、[配置文档](https://cli.vuejs.org/zh/config/)。
+1. 基于 `Vue 2.x`、`Vue Cli 4.x` 完善的Vue前端框架
+2. [Vue官网、文档](https://cn.vuejs.org/)
+3. 核心插件：[Vue路由](https://router.vuejs.org/zh/)、[Vuex状态管理](https://vuex.vuejs.org/zh/)
+4. 工具：[Vue Cli](https://cli.vuejs.org/zh/)、[Vue-Devtools](https://github.com/vuejs/vue-devtools)
 
 ## 1. 常用命令
 ```
+// 安装Vue Cli
+npm install -g @vue/cli
+# 或者
+yarn global add @vue/cli
+
 // 安装依赖
 npm install
 
 // 运行开发环境
 npm run serve
 
-// 打包
+// 打包 - 测试环境
+// 详情参考环境变量
+npm run build:testing
+
+// 打包 - 生产环境
 npm run build
 
 // 运行你的测试
@@ -37,6 +42,7 @@ npm run test
     ├── assets/                    // 样式、图片、公用方法和插件等静态资源
         ├── css                    // 样式
         ├── images                 // 图片
+        ├── icons                  // svg图标
         ├── utils                  // 公用方法
         └── plugins                // 插件
     ├── store/                     // Vuex状态管理
@@ -236,3 +242,22 @@ export default new Vue({
 1. 安装Vue CLI，`npm install -g @vue/cli`。（如已安装，可忽略本步骤）
 2. 添加依赖 `vue add element`。
 3. main.js文件添加全局依赖 `import '@/assets/plugins/element';`。
+
+## 8. 支持 `svg` 扩展
+
+### 8.1 使用
+
+> 支持和推荐单独导出 svg 的引入使用方式
+
+1. [iconfont.cn](https://www.iconfont.cn) 网站选择要使用的图标，并 `svg下载` 到 `/src/assets/icons/svg/` 目录下
+2. 页面使用全局组件 `svg-icon`
+
+```
+// class-name 为 组件的class
+// icon-class 为 图标的名字
+<svg-icon class-name="icon-styles" icon-class="password" />
+```
+
+### 8.2 修改颜色
+
+1. 下载的 `svg` 如果定义样式无法修改颜色，可尝试编辑 `*.svg` 文件，删除文件所有的 `fill` 属性。

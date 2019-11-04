@@ -5,12 +5,12 @@
  */
 
 // 基础
-@import './ui-base/variable';
-@import './ui-base/normalize';
-@import './ui-base/reset';
+@import './modules/variable';
+@import './modules/normalize';
+@import './modules/reset';
 
 // 组件样式
-@import './ui-base/marginPadding.scss';
+@import './modules/marginPadding.scss';
 
 // transition过渡动画
 .page-fade-enter-active {
