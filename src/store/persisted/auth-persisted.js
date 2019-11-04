@@ -1,5 +1,5 @@
 /**
- * 用户和权限相关字段，Cookie持久化
+ * 用户和权限相关字段，使用Cookie持久化
  */
 
 import Cookies from 'js-cookie'; // cookie 操作
