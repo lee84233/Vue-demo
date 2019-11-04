@@ -249,12 +249,12 @@ export default new Vue({
 
 > 支持和推荐单独导出 svg 的引入使用方式
 
-1. [iconfont.cn](https://www.iconfont.cn) 网站选择要使用的图标，并 `svg下载` 到 `/src/assets/icons/svg/` 目录下
+1. [iconfont.cn](https://www.iconfont.cn) 网站选择要使用的图标，并下载 `svg` 到 `/src/assets/icons/svg/` 目录下
 2. 页面使用全局组件 `svg-icon`
 
 ```
-// class-name 为 组件的class
-// icon-class 为 图标的名字
+// icon-name 为 图标的名字，必填
+// class-name 为 组件的class，选填
 <svg-icon class-name="icon-styles" icon-class="password" />
 ```
 

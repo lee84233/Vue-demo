@@ -17,8 +17,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-// 全局css
-@import './assets/css/app.scss';
-</style>
