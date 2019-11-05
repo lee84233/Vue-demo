@@ -23,6 +23,7 @@ const OPTION = {
   // 超时时间
   timeout: 30000,
   // 请求头
+  // 请求头信息中不能出现中文
   headers: {
     // 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' // form data格式
     'Content-Type': 'application/json;charset=UTF-8' // json格式
@@ -49,13 +50,7 @@ AXIOS_BASE.interceptors.request.use(
 // 响应拦截器
 AXIOS_BASE.interceptors.response.use(
   // 对响应数据处理
-  (response) => {
-    /*
-     * 此处还可以进行拦截
-     * 例如：判断接口是否success，response.data.code === 200
-     */
-    return response;
-  },
+  (response) => response,
   (error) => {
     // 对响应错误处理
     if (error.message.includes('timeout')) {
@@ -120,8 +115,8 @@ AXIOS_BASE.interceptors.response.use(
 /**
  * 对POST、PUT请求，参数格式化
  * @param {Object} data：需要格式化的对象
- * @param {String} dataType：form | json
- * @returns {Object} 格式化的data
+ * @param {*} dataType：form | json
+ * @returns
  */
 function formatParams(data, dataType) {
   // dataType 优先级最高
@@ -133,7 +128,14 @@ function formatParams(data, dataType) {
   }
 
   // axios全局配置 优先级次之
-  if (OPTION['headers']['Content-Type'].includes('application/x-www-form-urlencoded')) {
+  if (
+    OPTION &&
+    OPTION['headers'] &&
+    OPTION['headers']['Content-Type'] &&
+    OPTION['headers']['Content-Type'].includes(
+      'application/x-www-form-urlencoded'
+    )
+  ) {
     data = qsStringify(data);
   }
   return data;
@@ -170,6 +172,16 @@ export default async function({
   loading === true && app.$Progress.start();
   method = method.toLowerCase(); // 请求方法
   let params = {}; // 与请求一起发送的 URL 参数
+
+  // Content-Type
+  let contentType = headers['Content-Type'] || headers['content-type'] || headers['Content-type'] || headers['content-Type'] || null;
+  if (contentType) {
+    if (contentType.includes('application/x-www-form-urlencoded')) {
+      dataType = 'form';
+    } else if (contentType.includes('application/json')) {
+      dataType = 'json';
+    }
+  }
 
   // 设置请求头的编码类型
   if (dataType === 'form') {

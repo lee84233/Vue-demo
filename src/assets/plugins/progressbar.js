@@ -1,6 +1,8 @@
 /**
  * Progress Bar
+ * Github：https://github.com/hilongjw/vue-progressbar
  */
+
 import Vue from 'vue';
 import VueProgressBar from 'vue-progressbar';
 

@@ -44,9 +44,13 @@ export default {
       this.required('password');
 
       if (!this.userName.error && !this.password.error) {
-        this.$store.commit('setToken', '模拟token');
-        this.$store.commit('setUserName', this.userName.value);
-        this.$router.push('/home');
+        // 添加token、userName
+        this.$store.commit('setToken', 'your token');
+        this.$store.commit('setUserName', 'your name');
+
+        // 跳转
+        let url = (this.$route.query && this.$route.query.redirect) || '/';
+        this.$router.push(url);
       }
     },
     required(key) {

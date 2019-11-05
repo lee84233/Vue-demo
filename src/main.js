@@ -3,9 +3,14 @@ import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 
-import '@/assets/plugins/progressbar'; // Progress Bar
-// import '@/assets/plugins/element'; // Element UI
-import '@/assets/icons'; // svg图标，可配合 iconfont等 网站使用
+// Element UI
+import '@/assets/plugins/element';
+// Progress Bar
+import '@/assets/plugins/progressbar';
+// svg图标，可配合 iconfont等 网站使用
+import '@/assets/icons';
+// 权限控制
+import '@/assets/utils/auth';
 
 // 全局样式
 import '@/assets/css/app.scss';

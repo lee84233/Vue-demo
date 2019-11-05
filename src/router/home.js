@@ -12,7 +12,7 @@ export default [
         name: 'home',
         meta: {
           title: '首页',
-          requiresAuth: false
+          requiresAuth: true
         },
         component: () => import('@/views/home/index')
       }

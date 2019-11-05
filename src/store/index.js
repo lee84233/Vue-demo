@@ -6,18 +6,6 @@ import AuthStatePersisted from './persisted/auth-persisted';
 // 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)
 Vue.use(Vuex);
 
-// Storage 存储store
-// const projectVuex = createPersistedState({
-//   key: 'projectNameData',
-//   // storage: window.localStorage,
-//   storage: window.sessionStorage,
-//   reducer: (key) => ({
-//     token: key.token,
-//     lang: key.lang,
-//     orderFoods: key.orderFoods
-//   })
-// });
-
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
@@ -35,5 +23,7 @@ export default new Vuex.Store({
   },
   // 模块
   modules: {},
-  plugins: [AuthStatePersisted]
+  plugins: [
+    AuthStatePersisted
+  ]
 });

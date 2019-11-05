@@ -1,11 +1,13 @@
 /**
- * 用户和权限相关字段，使用Cookie持久化
+ * 用户和权限相关字段
+ * 使用 Cookie 持久化数据
  */
 
 import Cookies from 'js-cookie'; // cookie 操作
 import createPersistedState from 'vuex-persistedstate'; // Vuex 持久化插件
 
 const AuthStatePersisted = createPersistedState({
+  // 键名
   key: 'projectAuth',
   storage: {
     getItem: key => Cookies.get(key),

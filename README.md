@@ -239,9 +239,11 @@ export default new Vue({
 
 ## 7. 安装 `Element UI` 框架
 
-1. 安装Vue CLI，`npm install -g @vue/cli`。（如已安装，可忽略本步骤）
-2. 添加依赖 `vue add element`。
-3. main.js文件添加全局依赖 `import '@/assets/plugins/element';`。
+1. 安装Vue CLI，`npm install -g @vue/cli`（如已安装，可忽略本步骤）
+2. 添加依赖 `vue add element`
+3. main.js文件添加全局依赖 `import '@/assets/plugins/element';`
+
+**注：**执行`vue add element`，插件会自动修改`App.vue`，注意保存文件！！！
 
 ## 8. 支持 `svg` 扩展
 

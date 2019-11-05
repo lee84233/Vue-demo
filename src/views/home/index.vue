@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Home页 <small>{{title}}</small></h1>
-    <button @click="switchLanguage">发起一个HTTP请求</button>
+    <!-- <button @click="switchLanguage">发起一个HTTP请求</button> -->
+    <el-button type="primary" @click="switchLanguage">发起一个HTTP请求</el-button>
     <div>
       <svg-icon class-name="icon" icon-name="user" />
       <svg-icon class-name="icon" icon-name="password" />
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import {api1} from '@/api/api';
+import {api2} from '@/api/api';
 
 export default {
   name: 'home',
@@ -38,10 +39,14 @@ export default {
   },
   methods: {
     switchLanguage() {
-      api1({a: 1, b: 2}).then((res) => {
-        console.log(res);
+      api2({
+        appid: '98892211',
+        appsecret: '2WFXW4c5',
+        version: 'v6'
+      }).then((res) => {
+        // console.log(res);
       }).catch(e => {
-        console.log(e);
+        // console.log(e);
       });
     }
   }
