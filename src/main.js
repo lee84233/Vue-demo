@@ -3,7 +3,11 @@ import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
 
-// Element UI
+/**
+ * Element UI
+ *
+ * 不使用 Element UI，注释即可
+ */
 import '@/assets/plugins/element';
 // Progress Bar
 import '@/assets/plugins/progressbar';
