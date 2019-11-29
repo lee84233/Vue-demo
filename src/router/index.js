@@ -13,16 +13,20 @@ Vue.use(Router);
 /*
  * 路由属性说明
  *
+ * title: 页面title
+ * requiresAuth: 是否权限验证，可选值：true | false
+ *
+ * 示例：
   {
-    path: '/home',
-    name: 'home',
+    path: '/index',
+    name: 'index',
     meta: {
-      title: '首页', // 页面title
-      requiresAuth: true // true 为 需要权限验证，false 为 无需权限
+      title: '首页',
+      requiresAuth: true
     },
     component: () => import('@/views/home/index')
   }
-*/
+ */
 
 const ROUTER = new Router({
   mode: 'history',
