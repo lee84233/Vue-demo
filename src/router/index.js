@@ -11,7 +11,7 @@ import error from './error';
 Vue.use(Router);
 
 /*
- * 路由属性说明
+ * 路由 meta 属性说明
  *
  * title: 页面title
  * requiresAuth: 是否权限验证，可选值：true | false
